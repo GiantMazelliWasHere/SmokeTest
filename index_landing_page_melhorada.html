@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0F2027">
+  <meta name="description" content="Cuide da sua coleção. Organize jogos, livros, mangás e discos em um só lugar com o OmniVault.">
+  <title>OmniVault | Sua coleção merece cuidado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0F2027;
+      --navy-light: #17323a;
+      --teal: #20B2AA;
+      --teal-hover: #36c9c0;
+      --white: #FFFFFF;
+      --light: #F8F9FA;
+      --muted: #b8c7cb;
+      --line: rgba(255,255,255,.12);
+      --panel: #142a31;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--navy); color: var(--white); line-height: 1.65; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, 90%); margin: 0 auto; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(15,32,39,.94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { font: 800 1.45rem 'Poppins', sans-serif; letter-spacing: -.8px; text-decoration: none; }
+    .logo span { color: var(--teal); }
+    .nav-link { text-decoration: none; font-weight: 700; background: var(--teal); color: #062226; padding: 11px 18px; border: 1px solid var(--teal); transition: .2s; }
+    .nav-link:hover, .button:hover { background: var(--teal-hover); transform: translateY(-2px); }
+    .hero { padding: 92px 0 78px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 56px; }
+    .eyebrow { color: var(--teal); font-size: .8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+    h1, h2, h3 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -2px; margin-bottom: 22px; }
+    h1 span { color: var(--teal); }
+    .hero-copy { color: var(--muted); font-size: 1.1rem; max-width: 620px; margin-bottom: 28px; }
+    .hero-copy strong { color: var(--white); }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--teal); color: #062226; border: 1px solid var(--teal); padding: 15px 23px; text-decoration: none; font-weight: 800; transition: .2s; cursor: pointer; font-size: 1rem; }
+    .microcopy { color: #91a8ad; font-size: .82rem; margin-top: 13px; }
+    .shelf { border: 1px solid rgba(32,178,170,.38); background: linear-gradient(145deg, #17343b, #10242a); padding: 25px; box-shadow: 15px 15px 0 rgba(32,178,170,.08); }
+    .shelf-top { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 20px; color: var(--muted); font-size: .85rem; }
+    .status { color: var(--teal); font-weight: 700; }
+    .collection { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .item { min-height: 120px; padding: 14px 10px; background: rgba(255,255,255,.045); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between; }
+    .item .emoji { font-size: 1.8rem; }
+    .item strong { font-size: .88rem; }
+    .item small { color: var(--muted); font-size: .72rem; }
+    .shelf-note { border-left: 3px solid var(--teal); padding: 11px 13px; margin-top: 14px; color: var(--muted); font-size: .85rem; background: rgba(32,178,170,.06); }
+    .proof-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #0c1a20; }
+    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 24px 0; }
+    .proof-grid div { padding-left: 16px; border-left: 2px solid var(--teal); }
+    .proof-grid strong { display: block; font-family: 'Poppins', sans-serif; font-size: 1rem; }
+    .proof-grid span { display: block; color: var(--muted); font-size: .85rem; margin-top: 4px; }
+    section.content { padding: 86px 0; }
+    .section-head { max-width: 720px; text-align: center; margin: 0 auto 42px; }
+    .section-head h2 { font-size: clamp(1.9rem, 3vw, 2.8rem); margin-bottom: 14px; }
+    .section-head p { color: var(--muted); }
+    .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .benefit { padding: 27px; border-top: 3px solid var(--teal); background: var(--panel); }
+    .benefit .icon { font-size: 1.8rem; margin-bottom: 16px; }
+    .benefit h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .benefit p { color: var(--muted); font-size: .94rem; }
+    .manifesto { background: var(--light); color: var(--navy); padding: 66px 0; }
+    .manifesto-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; align-items: center; }
+    .manifesto h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    .manifesto p { color: #42565c; margin-top: 14px; }
+    .manifesto-list { display: grid; gap: 13px; }
+    .manifesto-list div { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; }
+    .check { color: #087e78; font-weight: 900; }
+    .signup-section { padding: 88px 0; background: linear-gradient(180deg, var(--navy), #10262d); }
+    .signup-box { max-width: 720px; margin: 0 auto; padding: clamp(24px, 5vw, 46px); background: #142a31; border: 1px solid rgba(32,178,170,.35); border-top: 4px solid var(--teal); }
+    .signup-box h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 12px; }
+    .signup-box > p { color: var(--muted); margin-bottom: 26px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-weight: 700; font-size: .88rem; }
+    input { width: 100%; padding: 14px 13px; color: var(--white); background: #0c1d22; border: 1px solid #3b555c; border-radius: 0; font: inherit; }
+    input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+    .consent { display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: .82rem; margin: 18px 0 22px; }
+    .consent input { width: 17px; height: 17px; margin-top: 3px; accent-color: var(--teal); flex: 0 0 auto; }
+    .consent a { color: var(--teal); }
+    .submit { width: 100%; }
+    .form-note { color: #91a8ad; font-size: .78rem; margin-top: 13px; }
+    #form-message { display: none; margin-top: 18px; padding: 14px; border-left: 3px solid var(--teal); background: rgba(32,178,170,.08); color: var(--white); }
+    footer { padding: 28px 0; border-top: 1px solid var(--line); color: #91a8ad; font-size: .85rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    @media (max-width: 800px) {
+      .hero { padding: 65px 0; }
+      .hero-grid, .manifesto-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero-grid { max-width: 650px; margin: auto; }
+      .benefits { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr; gap: 16px; }
+      .proof-grid div { padding: 2px 0 2px 14px; }
+    }
+    @media (max-width: 520px) {
+      .nav { min-height: 68px; }
+      .logo { font-size: 1.2rem; }
+      .nav-link { padding: 9px 11px; font-size: .82rem; }
+      .collection { grid-template-columns: repeat(2, 1fr); }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .item { min-height: 105px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav wrap" aria-label="Navegação principal">
+      <a class="logo" href="#" aria-label="OmniVault, início">Omni<span>Vault</span></a>
+      <a class="nav-link" href="#cadastro">Quero participar do beta ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-grid wrap">
+        <div>
+          <p class="eyebrow">Sua coleção conta uma história</p>
+          <h1>Você escolheu cada item. <span>Cuide de cada um deles.</span></h1>
+          <p class="hero-copy">Seus jogos, livros, mangás e discos são mais do que coisas guardadas numa estante ou esquecidas em bibliotecas digitais. São paixões, memórias e parte do seu investimento. O <strong>OmniVault reúne sua coleção em um só lugar</strong> para você cuidar melhor do que já tem, encontrar o que procura e comprar com mais consciência.</p>
+          <a class="button" href="#cadastro">Quero cuidar melhor da minha coleção <span aria-hidden="true">→</span></a>
+          <p class="microcopy">Entre para a lista de acesso antecipado e acompanhe o lançamento.</p>
+        </div>
+        <div class="shelf" aria-label="Exemplo ilustrativo de um catálogo de coleção">
+          <div class="shelf-top"><strong>MINHA ESTANTE DIGITAL</strong><span class="status">● ACERVO ORGANIZADO</span></div>
+          <div class="collection">
+            <div class="item"><span class="emoji">🎮</span><strong>Games</strong><small>Jogados e por jogar</small></div>
+            <div class="item"><span class="emoji">📚</span><strong>Livros</strong><small>Físicos e digitais</small></div>
+            <div class="item"><span class="emoji">📀</span><strong>Discos</strong><small>Álbuns e favoritos</small></div>
+            <div class="item"><span class="emoji">📖</span><strong>Mangás</strong><small>Séries e volumes</small></div>
+            <div class="item"><span class="emoji">🧩</span><strong>Outros itens</strong><small>Seu acervo, suas regras</small></div>
+            <div class="item"><span class="emoji">♡</span><strong>Lista de desejos</strong><small>Próximas aquisições</small></div>
+          </div>
+          <div class="shelf-note">Uma visão mais clara do que você tem, do que quer explorar e do que realmente vale a pena adquirir.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="proof-strip">
+      <div class="proof-grid wrap">
+        <div><strong>Menos compras repetidas</strong><span>Consulte seu acervo antes de comprar.</span></div>
+        <div><strong>Mais cuidado com suas paixões</strong><span>Centralize itens físicos e bibliotecas digitais.</span></div>
+        <div><strong>Seu backlog com propósito</strong><span>Descubra o que ainda quer ler, jogar ou ouvir.</span></div>
+      </div>
+    </div>
+
+    <section class="content wrap">
+      <div class="section-head">
+        <p class="eyebrow">Uma coleção, muitas histórias</p>
+        <h2>Organizar não é só arrumar. É valorizar.</h2>
+        <p>Quando seu acervo fica espalhado, é fácil esquecer o que já comprou, perder o controle do que falta e deixar boas experiências para depois. O OmniVault foi pensado para transformar essa confusão em uma coleção que faz sentido para você.</p>
+      </div>
+      <div class="benefits">
+        <article class="benefit">
+          <div class="icon" aria-hidden="true">🗂️</div>
+          <h3>Tudo no mesmo lugar</h3>
+          <p>Reúna jogos, livros, mangás, CDs, DVDs e outros formatos em um catálogo centralizado, sem precisar depender da memória ou alternar entre tantas listas.</p>
+        </article>
+        <article class="benefit">
+          <div class="icon" aria-hidden="true">♻️</div>
+          <h3>Menos desperdício</h3>
+          <p>Tenha mais clareza sobre o que já faz parte da sua coleção. Identificar possíveis duplicatas e consultar seu acervo ajuda a evitar compras desnecessárias.</p>
+        </article>
+        <article class="benefit">
+          <div class="icon" aria-hidden="true">✦</div>
+          <h3>Mais valor para o seu acervo</h3>
+          <p>Acompanhe o que já aproveitou, o que está na fila e o que deseja encontrar. Sua coleção deixa de ser uma lista esquecida e vira um catálogo útil para suas próximas decisões.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="manifesto">
+      <div class="manifesto-grid wrap">
+        <div>
+          <p class="eyebrow">Feito para quem coleciona</p>
+          <h2>Não deixe suas paixões se perderem no meio da bagunça.</h2>
+          <p>Você investiu tempo, dinheiro e carinho para construir sua coleção. Ela merece mais do que ficar espalhada entre prateleiras, aplicativos e listas soltas.</p>
+        </div>
+        <div class="manifesto-list">
+          <div><span class="check">✓</span><span>Saiba melhor o que você já tem antes de comprar algo novo.</span></div>
+          <div><span class="check">✓</span><span>Organize seu backlog sem transformar seu hobby em obrigação.</span></div>
+          <div><span class="check">✓</span><span>Tenha uma visão centralizada de diferentes formatos e bibliotecas.</span></div>
+          <div><span class="check">✓</span><span>Continue descobrindo novas histórias, sem perder de vista as que já fazem parte da sua vida.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="signup-section" id="cadastro">
+      <div class="signup-box">
+        <p class="eyebrow">Acesso antecipado</p>
+        <h2>Sua coleção merece esse próximo passo.</h2>
+        <p>Cadastre seus dados para demonstrar interesse no beta do OmniVault. Queremos avisar você quando houver novidades e sobre a liberação do acesso.</p>
+        <form id="beta-form">
+          <div class="form-grid">
+            <div class="field full">
+              <label for="name">Nome completo</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Como podemos chamar você?" minlength="3" required>
+            </div>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@exemplo.com" required>
+            </div>
+            <div class="field">
+              <label for="phone">WhatsApp com DDD</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="(11) 99999-9999" minlength="10" required>
+            </div>
+          </div>
+          <label class="consent" for="consent">
+            <input type="checkbox" id="consent" name="consent" required>
+            <span>Concordo em ser contatado(a) pelo OmniVault sobre o beta e novidades do projeto. Posso solicitar que parem de entrar em contato.</span>
+          </label>
+          <button class="button submit" type="submit">Quero entrar na lista do beta →</button>
+          <p class="form-note">Seus dados devem ser usados apenas para a finalidade informada. O envio real precisa ser conectado a um serviço de formulário, CRM ou backend antes de publicar a página.</p>
+          <div id="form-message" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap">
+      <span>© 2026 OmniVault. Sua coleção, no seu controle.</span>
+      <span>Organize. Valorize. Aproveite.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Demonstração de interface: este formulário ainda não envia dados a um servidor.
+    // Antes de publicar, conecte o submit a um backend/CRM e defina a política de privacidade.
+    const form = document.getElementById('beta-form');
+    const phone = document.getElementById('phone');
+    const message = document.getElementById('form-message');
+
+    phone.addEventListener('input', () => {
+      let digits = phone.value.replace(/\D/g, '').slice(0, 11);
+      if (digits.length > 10) {
+        phone.value = digits.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
+      } else if (digits.length > 6) {
+        phone.value = digits.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+      } else if (digits.length > 2) {
+        phone.value = digits.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+      } else {
+        phone.value = digits;
+      }
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      message.style.display = 'block';
+      message.textContent = 'A interface do cadastro está pronta. Para registrar seu interesse de verdade, falta conectar este formulário ao serviço de recebimento de leads do projeto.';
+    });
+  </script>
+</body>
+</html>
